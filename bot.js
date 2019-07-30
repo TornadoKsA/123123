@@ -154,6 +154,8 @@ client.on("message", msg => {
 });
 
 
+const devs = ['489342754887827487'];
+
 client.on('message', message => {
     let argresult = message.content.split(` `).slice(1).join(' ');
     if (message.content.startsWith(prefix + 'setStreaming')) {
@@ -185,6 +187,8 @@ client.on('message', message => {
     }
 
   });
+
+
 
 
 client.login(process.env.BOT_TOKEN);
