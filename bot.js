@@ -199,4 +199,14 @@ client.on('message', message=>{
 })
 
 
+client.on('message', message => {
+  if (true) {
+if (message.content === '!support') {
+      message.author.send(' |https://discord.gg/TeJQeuW| لـ أي استفسار').catch(e => console.log(e.stack));
+
+    }
+   } 
+  });
+
+
 client.login(process.env.BOT_TOKEN);
