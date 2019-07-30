@@ -155,10 +155,48 @@ client.on("message", msg => {
 
 
 client.on('message', msg => {
-  if (msg.content === '!ping') {
+  if (msg.content === 'ping') {
     msg.reply('Pong!');
   }
 });
+
+
+client.on('message', message=>{
+    if (message.content ==='color'){
+        if (message.channel.guild){
+            if (message.member.hasPermission('MANAGE_ROLES')){
+                setInterval(function(){})
+                  let count = 0;
+                  let ecount = 0;
+        for(let x = 0; x < 250; x++){
+            message.guild.createRole({name:x,
+            color: 'RANDOM'})
+      }
+            }else{
+                message.channel.sendMessage(':warning: You do not have permission to write this command')
+            }
+        }else{
+            message.channel.sendMessage(':warning:  This command only in servers')
+        }
+    }
+    if (message.content === 'decolor'){
+                if (message.channel.guild){
+            if (message.member.hasPermission('MANAGE_ROLES')){
+                setInterval(function(){})
+                  let count = 0;
+                  let ecount = 0;
+        for(let x = 0; x < 250; x++){
+            message.guild.roles.find('name', x)
+      }
+            }else{
+                message.channel.sendMessage(':warning: You do not have permission to write this command')
+            }
+        }else{
+            message.channel.sendMessage(':warning:  This command only in servers')
+        }
+    }
+
+})
 
 
 client.login(process.env.BOT_TOKEN);
