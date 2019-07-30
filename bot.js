@@ -80,7 +80,7 @@ Server support: https://discord.gg/TeJQeuW
 
 bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=605680873190326275&permissions=8&scope=bot
 
-==================================================================
+==================================================================**
 
 
 `);
