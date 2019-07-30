@@ -236,4 +236,53 @@ client.on("message", message => {
 });
 
 
+   client.on("message", message => {
+  if (message.author.bot) return;
+    if(!message.channel.guild) return;
+if (message.content.startsWith(prefix + "rank")) {
+                               let user = message.mentions.users.first();
+         var human = message.mentions.users.first();
+            var author;
+            if(human) {
+                author = human;
+            } else {
+                author = message.author;
+            }
+          var mentionned = message.mentions.members.first();
+             var ah;
+            if(mentionned) {
+                ah = mentionned;
+            } else {
+                ah = message.member;
+            }
+            var ment = message.mentions.users.first();
+            var getvalueof;
+            if(ment) {
+              getvalueof = ment;
+            } else {
+              getvalueof = message.author;
+            }
+   var mentionned = message.mentions.users.first();
+ 
+    var client;
+      if(mentionned){
+          var client = mentionned;
+      } else {
+          var client = message.author;
+ 
+      }
+if (!id[getvalueof.id]) id[getvalueof.id] = {textrank: 0,points: 1};
+            let Image = Canvas.Image,
+            canvas = new Canvas(400, 200),
+            ctx = canvas.getContext('2d');
+            fs.readFile("./id/rank.png", function (err, Background) {
+            if (err) return console.log(err);
+            let id = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 400, 200);
+ 
+});
+
+
 client.login(process.env.BOT_TOKEN);
