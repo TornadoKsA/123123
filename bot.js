@@ -43,8 +43,8 @@ client.on('message', message => {
 
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content === prefix + "help-ar") {
-		 message.channel.send('**تم ارسالك في الخاص**');
+     if (message.content === prefix + "help") {
+		 message.channel.send('**Done ✅**');
             
 	
 		 
@@ -52,83 +52,33 @@ client.on('message', message => {
 
  message.author.sendMessage(`
  **
-__~~The King Bot~~__ By: Peery#0609
-╱╭╮╭╮╱╱╱╱╭╮╭━╮╱╱╱╱╱╱╭━━╮╱╱╱╭╮
-╭╯╰┫┃╱╱╱╱┃┃┃╭╯╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮
-╰╮╭┫╰━┳━━┫╰╯╯╭┳━╮╭━━┫╰╯╰┳━┻╮╭╯
-╱┃┃┃╭╮┃┃━┫╭╮┃┣┫╭╮┫╭╮┃╭━╮┃╭╮┃┃
-╱┃╰┫┃┃┃┃━┫┃┃╰┫┃┃┃┃╰╯┃╰━╯┃╰╯┃╰╮
-╱╰━┻╯╰┻━━┻╯╰━┻┻╯╰┻━╮┣━━━┻━━┻━╯
-╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭━╯┃
-╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰━━╯
-╔[❖════════════❖]╗
-                  Prefix = ' * '
-╚[❖════════════❖]╝
 
-╔[❖════════════❖]╗
-                    اوامر ادارية
-╚[❖════════════❖]╝
+                  Prefix = ' ! '
 
- ❖  *kick <mention > ➾ لطرد عضو
+
+ ❖  !avatar 
  
- ❖ *mute < mention > ➾ اسكات عضو 
+ ❖  !id 
 
- ❖ *clear  ➾ لتنضيف المحادثة (fixing)
+ ❖ !clear
+ 
+ ❖ !sug
 
- ❖ *cv <name> ➾ صنع روم صوتية
+ ❖ !mute
 
- ❖ *ct <name> ➾ صنع روم كتابية
-
- ❖ *unmute <mention> ➾ فك الاسكات من العضو
+ ❖ !unmute
   
- ❖ *bc <message> ➾ لارسال رسالة لجميع اعضاء السيرفر
+ ❖ !member
 
+ ❖ !server
 
-╔[❖════════════❖]╗
-                    اوامر عامة
-╚[❖════════════❖]╝
-
-❖ *roll <number> ➾ قرعة
-
-❖ *member ➾ معلومات الاعضاء
-
-❖ *avatar ➾ شعار حسابك
-
-❖ *ser-av ➾ شعار السيرفر
-
-❖ *uptime ➾ مدة التشغيل
-
-❖ *id ➾ اي دي
-
-❖ *date ➾ التاريخ
-
-❖ *invs ➾ رابط دخول سيرفرك
-
-❖ *own ➾ مسؤول البوت
-
-❖ *help-ar ➾ المساعدة في العربي
-
-❖ *help-en ➾ المساعدة في الانجليزيلة
-
-❖ *ping ➾ عرض سرعه اتصال البوت
-
-❖ *bot ➾ معلومات البوت
-
-❖ *server ➾ معلومات السيرفر
-
-❖ *invite ➾ رابط دعوة البوت
-
-╔[❖════════════❖]╗
-                      الترحيب
-╚[❖════════════❖]╝
-
-لتفعيل خاصية الترحيب قم بعمل قناة اسمها "wlc"
+ ❖ !support
 
 ==================================================================
 
-Server support: https://discord.gg/twdHNJT
+Server support: https://discord.gg/TeJQeuW
 
-bot invite link: https://discordapp.com/oauth2/authorize?client_id=388700863893602304&scope=bot&permissions=0
+bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=605680873190326275&permissions=8&scope=bot
 
 ==================================================================
 
