@@ -251,16 +251,15 @@ client.on('message', message => {
     let modlog = client.channels.find('name', 'console');
     let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
     if (!muteRole) return message.reply("** Please Make Role Muted 'Muted' **").catch(console.error);
-    if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **');
+    if (message.mentions.users.size < 1) return message.reply('** You Must Mention @ **');
     const embed = new Discord.RichEmbed()
       .setColor(0x00AE86)
       .addField(' Mute ', ' | :white_check_mark: |')
-      .addField('تم اعطاء الميوت ل', `${user.username}#${user.discriminator} `)
-      .addField('السبب', '**تعكير نظام الشات**')
-      .addField('بواسطة:', `${message.author.username}#${message.author.discriminator}`)
+      .addField('Done Muted ✅', `${user.username}#${user.discriminator} `)
+      .addField('By:', `${message.author.username}#${message.author.discriminator}`)
      message.channel.send({embed: embed});
   
-    if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** لا يوجد لدي برمشن Manage Roles **').catch(console.error);
+    if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** Sorry Im Not Have Manage Roles **').catch(console.error);
   
     if (message.guild.member(user).roles.has(muteRole.id)) {
         client.channels.get(modlog.id).send({embed}).catch(console.error);
@@ -272,22 +271,21 @@ client.on('message', message => {
   
   };
       if (command === "!unmute") {
-            if(!message.channel.guild) return message.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
+            if(!message.channel.guild) return message.reply('**:x: Sorry im Not Have Administartor **');         
           if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **");
     let user = message.mentions.users.first();
     let modlog = client.channels.find('name', 'console');
     let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
-    if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **");
-    if (!modlog) return message.reply("**لا يوجد الروم المراد ارسال المعلومات له 'console'**");
-    if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **');
+    if (!muteRole) return message.reply("** Please Make Role Mute 'Muted' **");
+    if (message.mentions.users.size < 1) return message.reply('** You Must Mention @ **');
     const embed = new Discord.RichEmbed()
       .setColor(0x00AE86)
       .addField('UnMute ', ' | :white_check_mark: |')
-      .addField('تم فك الميوت عن', `${user.username}#${user.discriminator} `)
-      .addField('بواسطة:', `${message.author.username}#${message.author.discriminator}`)
+      .addField('Done Unmute ✅', `${user.username}#${user.discriminator} `)
+      .addField('By:', `${message.author.username}#${message.author.discriminator}`)
      message.channel.send({embed: embed});
   
-    if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** لا يوجد لدي برمشن Manage Roles **');
+    if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** Sorry You Not Have Manage Roles **');
   
     if (message.guild.member(user).removeRole(muteRole.id)) {
         client.channels.get(modlog.id).send({embed});
