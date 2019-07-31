@@ -330,56 +330,104 @@ client.on('message', message => {
   });
 
 
-client.on('message', message => {
-           if (!message.channel.guild) return;
-
-    let room = message.content.split(" ").slice(1);
-    let findroom = message.guild.channels.find('staff', `${room}`)
-    if(message.content.startsWith(prefix + "setSug")) {
-        if(!message.channel.guild) return;
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-if(!room) return message.channel.send('Please Type The Channel Name')
-if(!findroom) return message.channel.send('Cant Find This Channel')
-let embed = new Discord.RichEmbed()
-.setTitle('**Done The Suggest Code Has Been Setup**')
-.addField('Channel:', `${room}`)
-.addField('Requested By:', `${message.author}`)
-.setThumbnail(message.author.avatarURL)
-.setFooter(`${client.user.username}`)
-message.channel.sendEmbed(embed)
-sug[message.guild.id] = {
-channel: room,
+client.on('message',async message => {
+  var time = moment().format('Do MMMM YYYY , hh:mm');
+  var room;
+  var title;
+  var duration;
+  var gMembers;
+  var currentTime = new Date(),
+hours = currentTime.getHours() + 3 ,
+minutes = currentTime.getMinutes(),
+done = currentTime.getMinutes() + duration,
+seconds = currentTime.getSeconds();
+if (minutes < 10) {
+minutes = "0" + minutes;
 }
-fs.writeFile("./sug.json", JSON.stringify(sug), (err) => {
-if (err) console.error(err)
-})
-   client.on('message', message => {
+var suffix = "AM";
+if (hours >= 12) {
+suffix = "PM";
+hours = hours - 12;
+}
+if (hours == 0) {
+hours = 12;
+}
 
- 
-    if(message.content.startsWith(`${prefix}suggest`)) {
-      if(!message.channel.guild) return;
-      let suggest = message.content.split(" ").slice(1);
-      if(!suggest) return message.reply(`**Please Type The Suggest**`)
-    let findchannel = (message.guild.channels.find('name', `${sug[message.guild.id].channel}`))
-    if(!findchannel) return message.channel.send(`Error 404: The Suggest Channel Cant Find Or Not Set To Set The Suggest Channel Type: ${prefix}setSug`)
-    message.channel.send(`Done Your Suggest Will Be Seen By The Staffs`)
-    let sugembed = new Discord.RichEmbed()
-    .setTitle('New Suggest !')
-    .addField('Suggest By:', `${message.author}`)
-    .addField('Suggest:', `${suggest}`)
-    .setFooter('BlackBot™')
-    findchannel.sendEmbed(sugembed)
-        .then(function (message) {
-          message.react('✅')
-          message.react('❌')
-        })
-        .catch(err => {
-            message.reply(`Error 404: The Suggest Channel Cant Find Or Not Set To Set The Suggest Channel Type: ${prefix}setSug`)
-            console.error(err);
+  var filter = m => m.author.id === message.author.id;
+  if(message.content.startsWith(prefix + "giveaway")) {
+
+    if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
+    message.channel.send(`:eight_pointed_black_star:| **Send Name channel For the Giveaway**`).then(msg => {
+      message.channel.awaitMessages(filter, {
+        max: 1,
+        time: 20000,
+        errors: ['time']
+      }).then(collected => {
+        let room = message.guild.channels.find('name' , collected.first().content);
+        if(!room) return message.channel.send(':heavy_multiplication_x:| **i Found It :(**');
+        room = collected.first().content;
+        collected.first().delete();
+        msg.edit(':eight_pointed_black_star:| **Time For The Giveaway**').then(msg => {
+          message.channel.awaitMessages(filter, {
+            max: 1,
+            time: 20000,
+            errors: ['time']
+          }).then(collected => {
+            if(!collected.first().content.match(/[1-60][s,m,h,d,w]/g)) return message.channel.send('**The Bot Not Support This Time**');
+            duration = collected.first().content
+            collected.first().delete();
+        }).then(collected => {
+             title = collected.first().content
+            msg.edit(':eight_pointed_black_star:| **Now send The Present **').then(msg => {
+              message.channel.awaitMessages(filter, {
+                max: 1,
+                time: 20000,
+                errors: ['time']
+              }).then(collected => {
+                gMembers = collected.first().content
+                collected.first().delete();
+                msg.edit(':eight_pointed_black_star:| **Now send The Winners **').then(msg => {
+                    message.channel.awaitMessages(filter, {
+                      max: 1,
+                      time: 20000,
+                      errors: ['time']
+                    }).then(collected => {
+                collected.first().delete();
+                msg.delete();
+                message.delete();
+                    
+                try {
+                  let giveEmbed = new Discord.RichEmbed()
+                  .setDescription(`**${title}** \nReact With 🎉 To Enter! \nTime remaining : ${duration} \n **Created at :** ${hours}:${minutes}:${seconds} ${suffix}`)
+                  .setFooter(message.author.username, message.author.avatarURL);
+                  message.guild.channels.find("name" , room).send(' :heavy_check_mark: **Giveaway Created** :heavy_check_mark:' , {embed: giveEmbed}).then(m => {
+                     let re = m.react('🎉');
+                     setTimeout(() => {
+                       let users = m.reactions.get("🎉").users
+                       let list = users.array().filter(u => u.id !== m.author.id !== client.user.id);
+                       let gFilter = list[Math.floor(Math.random() * list.length) + 0]
+                       let endEmbed = new Discord.RichEmbed()
+                       .setAuthor(message.author.username, message.author.avatarURL)
+                       .setTitle(title)
+                       .addField('Giveaway Ended !🎉',`Winners : ${gFilter} \nEnded at :`)
+                       .setTimestamp()
+					 m.edit('** 🎉 GIVEAWAY ENDED 🎉**' , {embed: endEmbed});
+					message.guild.channels.find("name" , room).send(`**Congratulations ${gFilter}! You won The \`${title}\`**` , {embed: {}})
+                }, ms(duration));
+            });
+                } catch(e) {
+                message.channel.send(`:heavy_multiplication_x:| **i Don't Have Prem**`);
+                  console.log(e);
+                }
+              });
+            });
+          });
         });
-        }
-      })
-    }})
+      });
+    });
+  })
+})
+  }})
 
 
 client.login(process.env.BOT_TOKEN);
