@@ -430,7 +430,7 @@ hours = 12;
   }})
 
 
-lient.on('message', message => {//new msg event
+client.on('message', message => {
 if(!message.channel.guild) return;
   if(message.content.startsWith(prefix + 'setRainbow')) {//to create the rainbow role
 	  let role = message.guild.roles.find('name', 'Rainbow bot.')
