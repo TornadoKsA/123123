@@ -334,7 +334,7 @@ client.on('message', message => {
            if (!message.channel.guild) return;
 
     let room = message.content.split(" ").slice(1);
-    let findroom = message.guild.channels.find('name', `${room}`)
+    let findroom = message.guild.channels.find('sug', `${room}`)
     if(message.content.startsWith(prefix + "setSug")) {
         if(!message.channel.guild) return;
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
