@@ -433,7 +433,7 @@ hours = 12;
 client.on('message', message => {
 if(!message.channel.guild) return;
   if(message.content.startsWith(prefix + 'setRainbow')) {//to create the rainbow role
-	  let role = message.guild.roles.find('name', 'Rainbow bot.')
+	  let role = message.guild.roles.find('name', 'Rainbow')
     if(role) return message.channel.send(`This Step Already Completed !`)//if the role already created return with this msg
   //start of create role 
   if(!role){
