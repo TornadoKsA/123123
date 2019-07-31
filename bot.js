@@ -242,7 +242,7 @@ client.on('message', message => {
 });
 
 
-lient.on("message", message => {
+client.on('message', message => {
   let command = message.content.split(" ")[0];
   if (command === "!mute") {
           if(!message.channel.guild) return message.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');
