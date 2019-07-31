@@ -249,10 +249,10 @@ client.on("message", message => {
           if(!message.channel.guild) return message.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');
                   if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **");
   let user = message.mentions.users.first();
-  let modlog = client.channels.find('name', 'console');
+  let modlog = client.channels.find('name', 'log');
   let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
   if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **").catch(console.error);
-  if (!modlog) return message.reply("**لا يوجد الروم المراد ارسال المعلومات له 'Mute-Log'**");
+  if (!modlog) return message.reply("**لا يوجد الروم المراد ارسال المعلومات له 'log'**");
   if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **');
   const embed = new Discord.RichEmbed()
     .setColor(0x00AE86)
@@ -277,10 +277,10 @@ client.on("message", message => {
           if(!message.channel.guild) return message.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
         if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("** لا يوجد لديك برمشن 'Manage Roles' **");
   let user = message.mentions.users.first();
-  let modlog = client.channels.find('name', 'console');
+  let modlog = client.channels.find('name', 'log');
   let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
   if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **");
-  if (!modlog) return message.reply("**لا يوجد الروم المراد ارسال المعلومات له 'console'**");
+  if (!modlog) return message.reply("**لا يوجد الروم المراد ارسال المعلومات له 'log'**");
   if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **');
   const embed = new Discord.RichEmbed()
     .setColor(0x00AE86)
