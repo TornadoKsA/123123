@@ -310,7 +310,7 @@ client.on('message', message => {
      .setAuthor(client.user.username,client.user.avatarURL)
      .setThumbnail(client.user.avatarURL)
      .setColor('RANDOM')
-     .setTitle('``INFO  BlackBot™`` ')
+     .setTitle('**__info Fox__**')
             .addField('**My Ping**' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true) 
             .addField('**RAM Usage**', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true) 
             .addField('**Servers**', [client.guilds.size], true) 
