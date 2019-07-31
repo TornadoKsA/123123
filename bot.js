@@ -96,12 +96,6 @@ client.on('message', message => {
  ❖  !id 
 
  ❖ !clear
- 
- ❖ !sug
-
- ❖ !mute
-
- ❖ !unmute
   
  ❖ !member
 
@@ -257,7 +251,7 @@ message.channel.sendEmbed(embed);
 
 
 client.on('message', message => {
-    var prefix = "*"
+    var prefix = "!"
     if (message.content === prefix + "date") {
         var currentTime = new Date(),
             السنة = currentTime.getFullYear(),
