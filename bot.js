@@ -304,36 +304,15 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === prefix + "bot") {
-		 message.channel.send('**The Message Was Sent On Private**');
-            
-	
-		 
-
-
- message.author.sendMessage(`
- **
-أهلا 
-
-
-انا فوكس
-لقد اقتربت على الأنتهاء من أكتمالي ,
-
-لأدخالي لسيرفركم يرجى كتابة
-bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=605680873190326275&permissions=8&scope=bot
-
-لأي مشكلة قم بكتابة
-!hlep
-سوف تأتيك رسالة المساعدة مع رابط أدخال البوت
-
-شكرا لكم
-
-Thx <3
-**
-
-`);
-
+     if (message.content === "*bot") {
+            if(!message.channel.guild) return message.reply('** This command only for servers **');
+     let embed = new Discord.RichEmbed()
+  .setColor('RANDOM')
+  .addField("**أهلا انا فوكس:**" , client.guilds.size)
+  .addField("**لقد أقتربت على الانتهاء . من أجل ادخالي:**", client.users.size)
+  .addField("**bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=605680873190326275&permissions=8&scope=bot  :**", client.channels.size)
+  .setTimestamp()
+message.channel.sendEmbed(embed);
     }
 });
 
