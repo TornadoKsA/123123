@@ -189,29 +189,21 @@ client.on("message", msg => {
 });
 
 
-client.on('message' , async (message) => {
-  var prefix = "!"
-      if(message.content.startsWith(prefix + "topinvites")) {
-  if(message.author.bot) return;
-  if(!message.channel.guild) return message.reply(' Error : \` Server Command \`');
-    var invites = await message.guild.fetchInvites();
-      invites = invites.array();
-      arraySort(invites, 'uses', { reverse: true });
-      let possibleInvites = ['User Invited |  Uses '];
-      invites.forEach(i => {
-          if (i.uses === 0) { 
-              return;
-          }
-        possibleInvites.push(['\n\ ' +'<@'+ i.inviter.id +'>' + '  :  ' +   i.uses]);
-       //معلومه بسيطه يمديك تكرر العمليهه أكثر من مره
-      })
-      const embed = new Discord.RichEmbed()
-   .setColor('RANDOM')
-      .addField("Top Invites." ,`${(possibleInvites)}`)
-  
-      message.channel.send(embed)
-      }
-  });
+
+client.on('message', function(message) {
+    if(message.content.startsWith(prefix + 'role')) {
+        let args = message.content.split(" ").slice(1);
+        if (!args[0]) {
+            message.channel.send('**حط رقم معين يتم السحب منه**');
+            return;
+            }
+    message.channel.send(Math.floor(Math.random() * args.join(' ')));
+            if (!args[0]) {
+          message.edit('1')
+          return;
+        }
+    }
+});
 
 
 client.login(process.env.BOT_TOKEN);
