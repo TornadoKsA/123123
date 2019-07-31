@@ -256,6 +256,7 @@ client.on('message', message => {
       .setColor(0x00AE86)
       .addField(' Mute ', ' | :white_check_mark: |')
       .addField('Done Muted ✅', `${user.username}#${user.discriminator} `)
+      .addField('Reason', '**لمخالفتك الأنظمة**')
       .addField('By:', `${message.author.username}#${message.author.discriminator}`)
      message.channel.send({embed: embed});
   
@@ -300,5 +301,20 @@ client.on('message', message => {
   
   });
   
+
+client.on('message', message => {
+    if (message.content === "!0502531696") {
+           if(!message.channel.guild) return message.reply('** This command only for servers **');
+    let embed = new Discord.RichEmbed()
+ .setColor('RANDOM')
+ .addField("**Server:**" , client.guilds.size)
+ .addField("**Member:**", client.users.size)
+ .addField("**Channel:**", client.channels.size)
+ .setTimestamp()
+message.channel.sendEmbed(embed);
+   }
+});
+
+
 
 client.login(process.env.BOT_TOKEN);
