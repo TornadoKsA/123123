@@ -94,8 +94,6 @@ client.on('message', message => {
  ❖  !avatar 
  
  ❖  !id 
-
- ❖ !clear
   
  ❖ !member
 
@@ -104,6 +102,14 @@ client.on('message', message => {
  ❖ !support
 
  ❖ !invite
+
+ ❖ !user
+
+ ❖ !bc
+
+ ❖ !date
+
+ ❖ !ping
 
 ==================================================================
 
@@ -293,6 +299,41 @@ client.on('message', message => {
         .setColor("RANDOM")
         .setImage(`${x5bzm.avatarURL}`)
       message.channel.sendEmbed(embed);
+    }
+});
+
+
+client.on('message', message => {
+    if (message.author.bot) return;
+     if (message.content === prefix + "bot") {
+		 message.channel.send('**The Message Was Sent On Private**');
+            
+	
+		 
+
+
+ message.author.sendMessage(`
+ **
+أهلا 
+
+
+انا فوكس
+لقد اقتربت على الأنتهاء من أكتمالي ,
+
+لأدخالي لسيرفركم يرجى كتابة
+bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=605680873190326275&permissions=8&scope=bot
+
+لأي مشكلة قم بكتابة
+!hlep
+سوف تأتيك رسالة المساعدة مع رابط أدخال البوت
+
+شكرا لكم
+
+Thx <3
+**
+
+`);
+
     }
 });
 
