@@ -304,7 +304,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-  if (message.content.startsWith("botinfo")) {
+  if (message.content.startsWith("!botinfo")) {
   message.channel.send({
   embed: new Discord.RichEmbed()
      .setAuthor(client.user.username,client.user.avatarURL)
