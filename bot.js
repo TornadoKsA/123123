@@ -303,18 +303,4 @@ client.on('message', message => {
 });
 
 
-client.on('message', message => {
-     if (message.content === "*bot") {
-            if(!message.channel.guild) return message.reply('** This command only for servers **');
-     let embed = new Discord.RichEmbed()
-  .setColor('RANDOM')
-  .addField("**أهلا انا فوكس:**" , client.guilds.size)
-  .addField("**لقد أقتربت على الانتهاء . من أجل ادخالي:**", client.users.size)
-  .addField("**bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=605680873190326275&permissions=8&scope=bot  :**", client.channels.size)
-  .setTimestamp()
-message.channel.sendEmbed(embed);
-    }
-});
-
-
 client.login(process.env.BOT_TOKEN);
