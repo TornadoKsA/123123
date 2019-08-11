@@ -117,4 +117,44 @@ client.on('message', async message => {//alpha codes & Mrx -Dev
     });
 
 
+client.on('message', message =>{
+  if(message.content.startsWith(prefix + 'stats')){
+  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **لا تملك صلاحية**');
+  if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return message.reply('❌ **البوت لا يمتلك صلاحية**');
+  message.guild.createChannel(`👑معلومات السيرفر👌:` , 'category')
+  
+    message.guild.createChannel(`"انتظر قليلا` , 'voice').then(time => {
+    time.overwritePermissions(message.guild.id, {
+      CONNECT: false,
+      SPEAK: false
+    });
+  
+  setInterval(() => {
+      time.setName(`${message.guild.memberCount} User Count: `);
+ },1000);
+    });
+
+ message.guild.createChannel(`"Download ... ✔️` , 'voice').then(time => {
+  time.overwritePermissions(message.guild.id, {
+    CONNECT: false,
+    SPEAK: false
+  });
+setInterval(() => {
+    time.setName(`${message.guild.members.filter(m =>!m.user.bot).size} Member Count: `);
+},1500);
+});
+
+message.guild.createChannel(`"Download ... ✔️` , 'voice').then(time => {
+  time.overwritePermissions(message.guild.id, {
+    CONNECT: false,
+    SPEAK: false
+  });
+setInterval(() => {
+    time.setName(`${message.guild.members.filter(m=>m.user.bot).size} Bot Count: `);
+},2000);
+});
+}
+});
+
+
 client.login(process.env.BOT_TOKEN);
