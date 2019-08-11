@@ -121,7 +121,7 @@ client.on('message', message =>{
   if(message.content.startsWith(prefix + 'stats')){
   if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **لا تملك صلاحية**');
   if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return message.reply('❌ **البوت لا يمتلك صلاحية**');
-  message.guild.createChannel(`👑معلومات السيرفر👌:` , 'category')
+  message.guild.createChannel(`📊 Server Stats 📊` , 'category')
   
     message.guild.createChannel(`"انتظر قليلا` , 'voice').then(time => {
     time.overwritePermissions(message.guild.id, {
