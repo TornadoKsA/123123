@@ -1,38 +1,44 @@
-const Discord = require('discord.js');
-const moment = require("moment");  
-const fs = require("fs");      
-const dateFormat = require('dateformat');
-const client = new Discord.Client(); 
-const Canvas = require("canvas"); 
-const prefix = "!"
-const id = JSON.parse(fs.readFileSync("./id/rank.json", "utf8"));
+const Discord = require("discord.js");
 
-let banse = new Set();
-client.on('guildBanAdd', function(guild) {
-  guild.fetchAuditLogs().then(logs => {
-    const ser = logs.entries.first().executor;
-    if(!bane[ser.id+guild.id]) bane[ser.id+guild.id] = {
-      bans: 2
+const client = new Discord.Client();
+
+var prefix = "!";
+
+client.on('ready', () => {
+
+   console.log(`----------------`);
+
+      console.log(`Desert Bot- Script By : i1Suhaib`);
+
+        console.log(`----------------`);
+
+      console.log(`ON ${client.guilds.size} Servers '     Script By : i1Suhaib ' `);
+
+    console.log(`----------------`);
+
+  console.log(`Logged in as ${client.user.tag}!`);
+
+client.user.setGame(`( ! ) , Akon Beta V 1.0.0`,"http://twitch.tv/S-F")
+
+client.user.setStatus("dnd")
+
+});
+
+
+client.on('message', message => {
+   if (message.content === "!id") {
+   let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+  .setThumbnail(message.author.avatarURL)
+  .addField("Name:",`${message.author.username}`, true)
+  .addField('Discrim:',"#" +  message.author.discriminator, true)
+  .addField("ID:", message.author.id, true)
+  .addField("Create At:", message.author.createdAt, true)
+     
+     
+  message.channel.sendEmbed(embed);
     }
-    let boner = bane[ser.id+guild.id]
-banse.add(ser.id)
-boner.bans = Math.floor(boner.bans+1)
-
-
-setTimeout(() => {
-  boner.bans = 2
-  banse.delete(ser.id)
-},8000)
-
-if(boner.bans > 2) {
-  let roles = guild.members.get(ser.id).roles.array()
-guild.members.get(ser.id).removeRoles(roles)
-}
-
-    })
-    fs.writeFile('./alpha.json', JSON.stringify(bane), (err) => {
-if (err) console.error(err);
-})
+});
 
 
 client.login(process.env.BOT_TOKEN);
